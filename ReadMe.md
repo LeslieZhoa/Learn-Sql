@@ -31,9 +31,8 @@
 #### 分页查询
 
 使用SELECT查询时，如果结果集数据量很大，比如几万行数据，放在一个页面显示的话数据量太大，不如分页显示，每次显示100条。<br>
-分页查询的关键在于，首先要确定每页需要显示的结果数量pageSize（这里是3），然后根据当前页的索引pageIndex（从1开始），确定LIMIT和OFFSET应该设定的值：
-- 
-    - LIMIT总是设定为pageSize；
+分页查询的关键在于，首先要确定每页需要显示的结果数量pageSize（这里是3），然后根据当前页的索引pageIndex（从1开始），确定LIMIT和OFFSET应该设定的值： 
+-   - LIMIT总是设定为pageSize；
     - OFFSET计算公式为pageSize * (pageIndex - 1)。
     - OFFSET超过了查询的最大数量并不会报错，而是得到一个空的结果集。
 - OFFSET是可选的，如果只写LIMIT 15，那么相当于LIMIT 15 OFFSET 0。
