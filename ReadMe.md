@@ -29,6 +29,7 @@
 4. 如果有WHERE子句，那么ORDER BY子句要放到WHERE子句后面<br>
     ``` SELECT id,name,gender,score FROM students WHERE class_id = 1 ORDER BY score DESC;```
 #### 分页查询
+
 使用SELECT查询时，如果结果集数据量很大，比如几万行数据，放在一个页面显示的话数据量太大，不如分页显示，每次显示100条。<br>
 分页查询的关键在于，首先要确定每页需要显示的结果数量pageSize（这里是3），然后根据当前页的索引pageIndex（从1开始），确定LIMIT和OFFSET应该设定的值：
 - 
