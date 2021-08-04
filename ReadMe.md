@@ -29,9 +29,8 @@
 4. 如果有WHERE子句，那么ORDER BY子句要放到WHERE子句后面<br>
     ``` SELECT id,name,gender,score FROM students WHERE class_id = 1 ORDER BY score DESC;```
 #### 分页查询
-
 使用SELECT查询时，如果结果集数据量很大，比如几万行数据，放在一个页面显示的话数据量太大，不如分页显示，每次显示100条。<br>
-分页查询的关键在于，首先要确定每页需要显示的结果数量pageSize（这里是3），然后根据当前页的索引pageIndex（从1开始），确定LIMIT和OFFSET应该设定的值： 
+分页查询的关键在于，首先要确定每页需要显示的结果数量pageSize（这里是3），然后根据当前页的索引pageIndex（从1开始），确定LIMIT和OFFSET应该设定的值：
 -   - LIMIT总是设定为pageSize；
     - OFFSET计算公式为pageSize * (pageIndex - 1)。
     - OFFSET超过了查询的最大数量并不会报错，而是得到一个空的结果集。
@@ -105,4 +104,28 @@
   INNER JOIN classes c
   ON s.class_id = c.id;
   ```
-2. LEFT OUTER JOIN
+2. LEFT OUTER JOIN 返回左表都存在的行
+    ```
+    SELECT s.id, s.name, s.class_id, c.name class_name, s.gender, s.score
+    FROM students s
+    LEFT OUTER JOIN classes c
+    ON s.class_id = c.id; 
+    ```
+    ![](https://github.com/LeslieZhoa/Learn-Sql/blob/main/img/l.png)
+3. RIGHT OUTER JOIN 返回右表都存在的行
+    ```
+    SELECT s.id, s.name, s.class_id, c.name class_name, s.gender, s.score
+    FROM students s
+    RIGHT OUTER JOIN classes c
+    ON s.class_id = c.id;
+    ```
+    ![](https://github.com/LeslieZhoa/Learn-Sql/blob/main/img/l%20(1).png)
+4. FULL OUTER JOIN，它会把两张表的所有记录全部选择出来，并且，自动把对方不存在的列填充为NULL
+    ```
+    SELECT s.id, s.name, s.class_id, c.name class_name, s.gender, s.score
+    FROM students s
+    FULL OUTER JOIN classes c
+    ON s.class_id = c.id;
+    ```
+    ![](https://github.com/LeslieZhoa/Learn-Sql/blob/main/img/l%20(2).png)
+    
